@@ -173,7 +173,7 @@ class StreamingPlatform:
         if total_listening_time_user == 0:
             return None
 
-        top_genre = max(genre_listening_time, key=genre_listening_time.get)
+        top_genre = max(genre_listening_time.items(), key=lambda item: item[1])[0]
         top_genre_time = genre_listening_time[top_genre]
         percentage = (top_genre_time / total_listening_time_user) * 100.0
 
