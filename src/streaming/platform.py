@@ -66,8 +66,8 @@ class StreamingPlatform:
     # Q2: Compute the average number of unique tracks listened to by premium users.
     def avg_unique_tracks_per_premium_user(self, days=30):
         premium_users = []
-        for user in self._users.values():
-            if isinstance(user, PremiumUser):
+        for user in self._users.values():   
+            if isinstance(user, PremiumUser) and not isinstance(user, FamilyAccountUser):
                 premium_users.append(user)
 
         if not premium_users:
@@ -84,7 +84,7 @@ class StreamingPlatform:
             total_unique_tracks += len(unique_tracks_for_user)
 
         return total_unique_tracks / len(premium_users)
-
+    
     # Q3: Find the track that has been listened to by the most different users.
     def track_with_most_distinct_listeners(self):
         if not self._sessions:
